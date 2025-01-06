@@ -210,17 +210,83 @@ document.querySelectorAll('.service-card').forEach(card => {
     });
 });
 
-// Fechar Modal
-document.querySelector('.close-modal').addEventListener('click', () => {
-    document.getElementById('serviceModal').style.display = 'none';
-    document.body.style.overflow = 'auto'; // Restaura rolagem do body
+// Fechar modais (tanto de serviços quanto de projetos)
+document.querySelectorAll('.close-modal').forEach(closeBtn => {
+    closeBtn.addEventListener('click', () => {
+        // Fecha o modal de serviços
+        const serviceModal = document.getElementById('serviceModal');
+        if (serviceModal) {
+            serviceModal.style.display = 'none';
+        }
+        
+        // Fecha o modal de projetos
+        const projectModal = document.querySelector('.project-modal');
+        if (projectModal) {
+            projectModal.style.display = 'none';
+        }
+        
+        // Restaura a rolagem do body
+        document.body.style.overflow = 'auto';
+    });
 });
 
-// Fechar Modal ao clicar fora
+// Fechar modal ao clicar fora
 window.addEventListener('click', (e) => {
-    const modal = document.getElementById('serviceModal');
-    if (e.target === modal) {
-        modal.style.display = 'none';
+    const serviceModal = document.getElementById('serviceModal');
+    const projectModal = document.querySelector('.project-modal');
+    
+    if (e.target === serviceModal) {
+        serviceModal.style.display = 'none';
         document.body.style.overflow = 'auto';
     }
+    
+    if (e.target === projectModal) {
+        projectModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Dados dos projetos
+const projectsData = {
+    quadra: {
+        title: "QUADRA POLIESPORTIVA",
+        date: "Janeiro de 2024",
+        description: "Projeto, cálculo estrutural, laudo e ART. Projeto 3D e detalhamento 2D para execução. Lista de peças contendo quantitativo de material.",
+        image: "https://static.wixstatic.com/media/f064ac_54d4cbe0118c4598a51963bd080e06de~mv2.png"
+    },
+    portico: {
+        title: "PÓRTICO EM ESTRUTURA DE MADEIRA",
+        date: "Agosto de 2022",
+        description: "Este projeto desafiador, mas gratificante. Projeto executivo para a construção do pórtico de Barretos, feito em estrutura de madeira, foi utilizado eucalipto tratado para a sua construção.\n\nO projeto executivo foi feito respeitando cada detalhe do desenho arquitetonico recebido pela construtora.",
+        image: "images/projetos/1660946828jpg.jpg"
+    },
+    "portico-rolante": {
+        title: "PÓRTICO ROLANTE MÓVEL",
+        date: "Julho de 2022",
+        description: "Projeto desenvolvido para AMBEV planta de Juatuba -MG.\n\nCálculo estrutural feito manualmente conforme NBR8800 Projeto de estruturas de aços e de estruturas mistas de aço e concreto para edifícios, NBR8400 Cálculo de equipamento para elevação e movimentação de cargas, NBR9974 Talhas de cabo de aço com acionamento motorizado, NBR7195 Cores para segurança.",
+        image: "https://static.wixstatic.com/media/f064ac_a93d108a0f6a439bb6c78574bc8e77a9~mv2.jpeg"
+    }
+};
+
+// Abrir modal
+document.querySelectorAll('.project-card').forEach(card => {
+    card.querySelector('.saiba-mais').addEventListener('click', (e) => {
+        e.preventDefault();
+        const projectId = card.dataset.project;
+        const project = projectsData[projectId];
+        
+        const modal = document.querySelector('.project-modal');
+        modal.querySelector('h2').textContent = project.title;
+        modal.querySelector('.modal-date').textContent = project.date;
+        modal.querySelector('.modal-description').textContent = project.description;
+        
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Fechar modal
+document.querySelector('.close-modal').addEventListener('click', () => {
+    document.querySelector('.project-modal').style.display = 'none';
+    document.body.style.overflow = 'auto';
 }); 

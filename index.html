@@ -167,18 +167,67 @@
         </div>
     </section>
 
-    <section id="projetos" class="gallery">
-        <h2>Nossos Projetos</h2>
-        <div class="gallery-grid">
-            <!-- Adicione suas imagens aqui -->
-            <div class="gallery-item">
-                <img src="projeto1.jpg" alt="Projeto 1">
-                <div class="overlay">
-                    <h3>Projeto Residencial</h3>
-                    <p>Descrição do projeto</p>
+    <section id="projetos" class="projects">
+        <div class="projects-container">
+            <h2>Nossos Projetos</h2>
+            
+            <div class="projects-grid">
+                <!-- Projeto da Quadra -->
+                <div class="project-card" data-project="quadra">
+                    <div class="project-image">
+                        <img src="https://static.wixstatic.com/media/f064ac_54d4cbe0118c4598a51963bd080e06de~mv2.png" alt="Quadra Poliesportiva">
+                    </div>
+                    <div class="project-info">
+                        <div class="title-date">
+                            <h3>QUADRA POLIESPORTIVA</h3>
+                            <span class="project-date">Janeiro de 2024</span>
+                        </div>
+                        <button class="saiba-mais">Saiba Mais</button>
+                    </div>
+                </div>
+
+                <!-- Projeto do Pórtico -->
+                <div class="project-card" data-project="portico">
+                    <div class="project-image">
+                        <img src="images/projetos/1660946828jpg.jpg" alt="Pórtico em Estrutura de Madeira">
+                    </div>
+                    <div class="project-info">
+                        <div class="title-date">
+                            <h3>PÓRTICO EM ESTRUTURA DE MADEIRA</h3>
+                            <span class="project-date">Agosto de 2022</span>
+                        </div>
+                        <button class="saiba-mais">Saiba Mais</button>
+                    </div>
+                </div>
+
+                <div class="project-card" data-project="portico-rolante">
+                    <div class="project-image">
+                        <img src="https://static.wixstatic.com/media/f064ac_a93d108a0f6a439bb6c78574bc8e77a9~mv2.jpeg" 
+                             alt="Pórtico Rolante Móvel">
+                    </div>
+                    <div class="project-info">
+                        <div class="title-date">
+                            <h3>PÓRTICO ROLANTE MÓVEL</h3>
+                            <span class="project-date">Julho de 2022</span>
+                        </div>
+                        <button class="saiba-mais">Saiba Mais</button>
+                    </div>
                 </div>
             </div>
-            <!-- Repita para mais projetos -->
+        </div>
+
+        <!-- Modal de Projeto -->
+        <div class="project-modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="modal-body">
+                    <div class="modal-info">
+                        <h2></h2>
+                        <span class="modal-date"></span>
+                        <p class="modal-description"></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

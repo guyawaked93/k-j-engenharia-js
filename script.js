@@ -265,6 +265,43 @@ const projectsData = {
         date: "Julho de 2022",
         description: "Projeto desenvolvido para AMBEV planta de Juatuba -MG.\n\nCálculo estrutural feito manualmente conforme NBR8800 Projeto de estruturas de aços e de estruturas mistas de aço e concreto para edifícios, NBR8400 Cálculo de equipamento para elevação e movimentação de cargas, NBR9974 Talhas de cabo de aço com acionamento motorizado, NBR7195 Cores para segurança.",
         image: "https://static.wixstatic.com/media/f064ac_a93d108a0f6a439bb6c78574bc8e77a9~mv2.jpeg"
+    },
+    "residencias": {
+        title: "PROJETO, EXECUÇÃO E GESTÃO DE RESIDÊNCIAS DE ALTO PADRÃO",
+        date: "2023",
+        description: "Especialização em projetos residenciais de alto padrão, com foco em execução e gestão completa do processo construtivo.",
+        images: [
+            "https://static.wixstatic.com/media/f064ac_44d3c7bd67f448c89964cdd8e3200cc8~mv2.jpeg",
+            "https://static.wixstatic.com/media/f064ac_947259f333a746788ee7e08e4722a32a~mv2.jpeg",
+            "https://static.wixstatic.com/media/f064ac_852671dd012c4d0bbe0546bd1cd3a938~mv2.jpeg",
+            "https://static.wixstatic.com/media/f064ac_c0cbfbb2ebf94ce48b3a82370fe9ed7d~mv2.jpeg"
+        ]
+    },
+    "linha-vida": {
+        title: "PROJETO, LAUDO E ART DE LINHA DE VIDA - EDP SÃO JOSÉ DOS CAMPOS",
+        date: "2024",
+        description: "Adequação de linha de vida existente.\nTeste de arrancamento.",
+        images: [
+            "https://static.wixstatic.com/media/f064ac_d70cd3c179e24f878f14163fe91b2e12~mv2.jpg",
+            "https://static.wixstatic.com/media/f064ac_6f1c181510c0436085ad264ff626ea0a~mv2.jpg",
+            "https://static.wixstatic.com/media/f064ac_f6ede795063a4e04a07576976bfe7e17~mv2.png",
+            "https://static.wixstatic.com/media/f064ac_a01d418c2bbd426b8e38d18618f081a8~mv2.png",
+            "https://static.wixstatic.com/media/f064ac_609efbef9daa44698d9600e4682d7e52~mv2.png",
+            "https://static.wixstatic.com/media/f064ac_344aa10452c04cb1aade4b3ad4632216~mv2.png"
+        ]
+    },
+    "embalagens": {
+        title: "PROJETOS E LAUDOS PARA EMBALAGENS",
+        date: "2024",
+        description: "Desenvolvimento de projetos e laudos técnicos especializados para embalagens industriais.",
+        images: [
+            "https://static.wixstatic.com/media/f064ac_f13d4ea5b8ae42cea45552ac602abca9~mv2.png",
+            "https://static.wixstatic.com/media/f064ac_f3ed46bdea374576a9dc4cf0b8447b6f~mv2.jpg",
+            "https://static.wixstatic.com/media/f064ac_71f0d06647724fe9b2bcf1ed82565fa8~mv2.png",
+            "https://static.wixstatic.com/media/f064ac_e3159ba64c2441a09fe064e9463b0109~mv2.png",
+            "https://static.wixstatic.com/media/f064ac_29ecf5ba110e49d38ff3b064b7dd697e~mv2.png",
+            "https://static.wixstatic.com/media/f064ac_c750943b90414378b806b1729dad044b~mv2.png"
+        ]
     }
 };
 
@@ -280,6 +317,21 @@ document.querySelectorAll('.project-card').forEach(card => {
         modal.querySelector('.modal-date').textContent = project.date;
         modal.querySelector('.modal-description').textContent = project.description;
         
+        // Adicionar galeria se o projeto tiver imagens
+        const modalInfo = modal.querySelector('.modal-info');
+        modalInfo.innerHTML = ''; // Limpa o conteúdo anterior
+        
+        modalInfo.innerHTML = `
+            <h2>${project.title}</h2>
+            <span class="modal-date">${project.date}</span>
+            <p class="modal-description">${project.description}</p>
+        `;
+        
+        if (project.images && project.images.length > 0) {
+            const gallery = createGallery(project.images);
+            modalInfo.appendChild(gallery);
+        }
+        
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
     });
@@ -289,4 +341,147 @@ document.querySelectorAll('.project-card').forEach(card => {
 document.querySelector('.close-modal').addEventListener('click', () => {
     document.querySelector('.project-modal').style.display = 'none';
     document.body.style.overflow = 'auto';
-}); 
+});
+
+// Adicione estas funções para controlar a galeria
+function createGallery(images) {
+    const gallery = document.createElement('div');
+    gallery.className = 'modal-gallery';
+    
+    images.forEach((image, index) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        
+        const img = document.createElement('img');
+        img.src = image;
+        img.alt = `Imagem ${index + 1} do projeto`;
+        
+        item.appendChild(img);
+        item.addEventListener('click', () => openFullscreen(index, images));
+        gallery.appendChild(item);
+    });
+    
+    return gallery;
+}
+
+function createFullscreenGallery() {
+    const fullscreen = document.createElement('div');
+    fullscreen.className = 'fullscreen-gallery';
+    fullscreen.innerHTML = `
+        <button class="gallery-nav gallery-prev">&lt;</button>
+        <img class="fullscreen-image" src="" alt="Imagem em tela cheia">
+        <button class="gallery-nav gallery-next">&gt;</button>
+        <button class="gallery-close">&times;</button>
+    `;
+    document.body.appendChild(fullscreen);
+    
+    return fullscreen;
+}
+
+let currentImageIndex = 0;
+let galleryImages = [];
+const fullscreenGallery = createFullscreenGallery();
+const fullscreenImage = fullscreenGallery.querySelector('.fullscreen-image');
+
+function openFullscreen(index, images) {
+    currentImageIndex = index;
+    galleryImages = images;
+    fullscreenImage.src = images[index];
+    fullscreenGallery.classList.add('active');
+}
+
+function closeFullscreen() {
+    fullscreenGallery.classList.remove('active');
+}
+
+function navigateGallery(direction) {
+    currentImageIndex = (currentImageIndex + direction + galleryImages.length) % galleryImages.length;
+    fullscreenImage.src = galleryImages[currentImageIndex];
+}
+
+// Adicione os event listeners para a navegação da galeria
+document.querySelector('.gallery-prev').addEventListener('click', () => navigateGallery(-1));
+document.querySelector('.gallery-next').addEventListener('click', () => navigateGallery(1));
+document.querySelector('.gallery-close').addEventListener('click', closeFullscreen);
+
+// Modifique a função openProjectModal para incluir a galeria
+function openProjectModal(project) {
+    const modal = document.querySelector('.project-modal');
+    const modalInfo = modal.querySelector('.modal-info');
+    
+    modalInfo.innerHTML = `
+        <button class="close-modal">&times;</button>
+        <h2>${project.title}</h2>
+        <span class="modal-date">${project.date}</span>
+        <p class="modal-description">${project.description}</p>
+    `;
+    
+    // Adicione a galeria se o projeto tiver imagens
+    if (project.images && project.images.length > 0) {
+        const gallery = createGallery(project.images);
+        modalInfo.appendChild(gallery);
+    }
+    
+    modal.classList.add('active');
+}
+
+// Atualize o objeto do projeto para incluir as imagens
+const residenciasAltoPadrao = {
+    title: "PROJETO, EXECUÇÃO E GESTÃO DE RESIDÊNCIAS DE ALTO PADRÃO",
+    date: "2023",
+    description: "Especialização em projetos residenciais de alto padrão, com foco em execução e gestão completa do processo construtivo.",
+    images: [
+        "https://static.wixstatic.com/media/f064ac_44d3c7bd67f448c89964cdd8e3200cc8~mv2.jpeg",
+        "https://static.wixstatic.com/media/f064ac_947259f333a746788ee7e08e4722a32a~mv2.jpeg",
+        "https://static.wixstatic.com/media/f064ac_852671dd012c4d0bbe0546bd1cd3a938~mv2.jpeg",
+        "https://static.wixstatic.com/media/f064ac_c0cbfbb2ebf94ce48b3a82370fe9ed7d~mv2.jpeg"
+    ]
+}; 
+
+function openGallery(images) {
+    const modal = document.createElement('div');
+    modal.className = 'gallery-modal';
+    
+    const imageContainer = document.createElement('div');
+    imageContainer.className = 'gallery-container';
+    
+    const mainImage = document.createElement('img');
+    mainImage.src = images[0];
+    mainImage.className = 'gallery-image';
+    
+    const prevButton = document.createElement('button');
+    prevButton.className = 'gallery-nav gallery-prev';
+    prevButton.innerHTML = '&#10094;';
+    
+    const nextButton = document.createElement('button');
+    nextButton.className = 'gallery-nav gallery-next';
+    nextButton.innerHTML = '&#10095;';
+    
+    const closeButton = document.createElement('button');
+    closeButton.className = 'gallery-close';
+    closeButton.innerHTML = '&times;';
+    
+    let currentIndex = 0;
+    
+    prevButton.onclick = () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        mainImage.src = images[currentIndex];
+    };
+    
+    nextButton.onclick = () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        mainImage.src = images[currentIndex];
+    };
+    
+    closeButton.onclick = () => {
+        document.body.removeChild(modal);
+    };
+    
+    imageContainer.appendChild(mainImage);
+    modal.appendChild(imageContainer);
+    modal.appendChild(prevButton);
+    modal.appendChild(nextButton);
+    modal.appendChild(closeButton);
+    
+    document.body.appendChild(modal);
+} 

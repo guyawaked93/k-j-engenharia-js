@@ -675,26 +675,19 @@ footer {
 .project-info {
     padding: 1.5rem;
     flex-direction: column;
-    height: 150px;
+    height: 180px;
     position: relative;
 }
 
 .project-info .title-date {
     margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .project-info h3 {
     color: var(--primary-color);
     font-size: 1.2rem;
-}
-
-.project-info .project-date {
-    color: #666;
-    font-size: 0.9rem;
-    white-space: nowrap;
+    text-align: center;
+    margin-bottom: 2.5rem;
 }
 
 .project-info .project-description {
@@ -710,7 +703,7 @@ footer {
 }
 
 .saiba-mais {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
     background: var(--primary-color);
     border: none;
     color: var(--secondary-color);
@@ -720,13 +713,17 @@ footer {
     border-radius: 5px;
     position: absolute;
     bottom: 1.5rem;
-    right: 1.5rem;
+    right: 1rem;
     white-space: nowrap;
+    width: auto;
+    min-width: 100px;
+    text-align: center;
 }
 
 .saiba-mais:hover {
     background: #c41530;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 /* Estilos do Modal */
@@ -784,4 +781,106 @@ footer {
     line-height: 1.6;
     font-size: 1.1rem;
     white-space: pre-line;
+}
+
+/* Adicione estes estilos para a galeria */
+.modal-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.gallery-item {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Proporção 16:9 */
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+}
+
+.gallery-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Estilos para visualização em tela cheia */
+.fullscreen-gallery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1100;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullscreen-gallery.active {
+    display: flex;
+}
+
+.fullscreen-image {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.gallery-nav:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.gallery-prev {
+    left: 1rem;
+}
+
+.gallery-next {
+    right: 1rem;
+}
+
+.gallery-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+}
+
+/* Estilos para a data no modal */
+.modal-date {
+    color: #666;
+    font-size: 1rem;
+    display: block;
+    text-align: center;
+    margin: 1rem 0;
 } 

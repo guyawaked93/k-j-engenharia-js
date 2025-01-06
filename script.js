@@ -493,3 +493,38 @@ function openGallery(images) {
     
     document.body.appendChild(modal);
 } 
+
+// Controle das Galerias
+document.querySelectorAll('.gallery-item').forEach(item => {
+    item.querySelector('.view-details').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const projectDetails = {
+            title: item.querySelector('h4').textContent,
+            description: item.querySelector('p').textContent,
+            image: item.querySelector('img').src
+        };
+        openGalleryModal(projectDetails);
+    });
+});
+
+function openGalleryModal(details) {
+    const modal = document.createElement('div');
+    modal.className = 'gallery-modal';
+    
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img src="${details.image}" alt="${details.title}">
+            <h3>${details.title}</h3>
+            <p>${details.description}</p>
+            <!-- Adicione mais detalhes conforme necessário -->
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    modal.style.display = 'block';
+    
+    modal.querySelector('.close-modal').onclick = () => {
+        document.body.removeChild(modal);
+    };
+} 

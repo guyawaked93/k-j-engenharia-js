@@ -315,6 +315,11 @@ document.querySelectorAll('.project-card').forEach(card => {
         const projectId = card.dataset.project;
         const project = projectsData[projectId];
         
+        if (!project) {
+            console.error(`Projeto não encontrado: ${projectId}`);
+            return;
+        }
+        
         const modal = document.querySelector('.project-modal');
         modal.querySelector('h2').textContent = project.title;
         modal.querySelector('.modal-date').textContent = project.date;

@@ -316,6 +316,15 @@ const projectsData = {
             "images/projetos/f50a131f-60e5-47e0-a7b6-477e1dcd5f57.jpg",
             "images/projetos/04e195c1-ebb9-44ac-a7ae-87849bee51d3.jpg"
         ]
+    },
+    mecanica: {
+        title: "Transportador de Correia",
+        date: "2024",
+        description: "Projeto mecânico detalhado de transportador de correia para indústria.",
+        image: "https://static.wixstatic.com/media/f064ac_79a05c10d9fd4a81ae5e61f1d77ad18c~mv2.png",
+        gallery: [
+            "https://static.wixstatic.com/media/f064ac_79a05c10d9fd4a81ae5e61f1d77ad18c~mv2.png"
+        ]
     }
 };
 
@@ -539,3 +548,192 @@ function openGalleryModal(details) {
         document.body.removeChild(modal);
     };
 } 
+
+const galleryData = {
+    mechanical: [
+        {
+            title: "Galeria Mecânica",
+            description: "Projetos mecânicos desenvolvidos pela K&J Engenharia",
+            images: [
+                {
+                    url: "https://static.wixstatic.com/media/f064ac_430726c1b58a40bf8be92e65d2cafec8~mv2.png",
+                    title: "TRANSPORTADOR DE CORREIA",
+                    description: "Vista 1"
+                },
+                {
+                    url: "https://static.wixstatic.com/media/f064ac_79a05c10d9fd4a81ae5e61f1d77ad18c~mv2.png",
+                    title: "TRANSPORTADOR DE CORREIA",
+                    description: "Vista 2"
+                },
+                {
+                    url: "https://static.wixstatic.com/media/f064ac_4c3990734eb949cdaf4c064867e7d18e~mv2.png",
+                    title: "UNIDADE HIDRAÚLICA",
+                    description: "Unidade Hidráulica Industrial"
+                },
+                {
+                    url: "https://static.wixstatic.com/media/f064ac_0e81f9de0ba24b0ea695e26f83e54f02~mv2.png",
+                    title: "SERRA CIRCULAR MÚLTIPLA",
+                    description: "Serra Circular Múltipla Industrial"
+                }
+            ]
+        }
+    ],
+    civil: []
+};
+
+function createGalleryCarousel(images) {
+    return `
+        <div class="gallery-carousel">
+            <div class="carousel-container">
+                <img src="${images[0].url}" alt="${images[0].title}" class="carousel-image">
+                <div class="carousel-title">
+                    <h3>${images[0].title}</h3>
+                </div>
+                <button class="carousel-nav prev">&lt;</button>
+                <button class="carousel-nav next">&gt;</button>
+            </div>
+        </div>
+    `;
+}
+
+function updateCarousel() {
+    img.src = images[currentIndex].url;
+    const title = container.querySelector('.carousel-title');
+    title.innerHTML = `<h3>${images[currentIndex].title}</h3>`;
+}
+
+function initCarousel(galleryItem) {
+    const images = galleryItem._images;
+    let currentIndex = 0;
+    const container = galleryItem.querySelector('.carousel-container');
+    const img = container.querySelector('.carousel-image');
+
+    function updateCarousel() {
+        img.src = images[currentIndex].url;
+        const title = container.querySelector('.carousel-title');
+        title.innerHTML = `<h3>${images[currentIndex].title}</h3>`;
+    }
+
+    galleryItem.querySelector('.prev').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateCarousel();
+    });
+
+    galleryItem.querySelector('.next').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel();
+    });
+}
+
+function renderGalleries() {
+    const mechanicalGrid = document.querySelector('.gallery-section.mechanical .gallery-grid');
+    mechanicalGrid.innerHTML = '';
+
+    const mechanicalGallery = galleryData.mechanical[0];
+    const galleryItem = document.createElement('div');
+    galleryItem.className = 'gallery-item';
+    galleryItem._images = mechanicalGallery.images;
+    
+    galleryItem.innerHTML = `
+        ${createGalleryCarousel(mechanicalGallery.images)}
+        <div class="gallery-overlay">
+            <h4>${mechanicalGallery.title}</h4>
+            <p>${mechanicalGallery.description}</p>
+            <button class="view-details">Ver Galeria Completa</button>
+        </div>
+    `;
+
+    mechanicalGrid.appendChild(galleryItem);
+    initCarousel(galleryItem);
+    
+    galleryItem.querySelector('.view-details').addEventListener('click', () => {
+        openFullGallery(mechanicalGallery.images);
+    });
+}
+
+function openFullGallery(images) {
+    const modal = document.createElement('div');
+    modal.className = 'full-gallery-modal';
+    
+    modal.innerHTML = `
+        <div class="full-gallery-content">
+            <span class="close-modal">&times;</span>
+            <div class="gallery-grid">
+                ${images.map(img => `
+                    <div class="gallery-full-item" onclick="openFullscreenImage('${img.url}', '${img.title}', '${img.description}')">
+                        <img src="${img.url}" alt="${img.title}">
+                        <div class="image-caption">
+                            <h4>${img.title}</h4>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    modal.querySelector('.close-modal').onclick = () => {
+        document.body.removeChild(modal);
+    };
+    
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            document.body.removeChild(modal);
+        }
+    };
+}
+
+function openFullscreenImage(url, title, description) {
+    const fullscreen = document.createElement('div');
+    fullscreen.className = 'fullscreen-image-modal';
+    
+    // Encontrar a imagem atual e suas vizinhas no array de imagens
+    const images = galleryData.mechanical[0].images;
+    const currentIndex = images.findIndex(img => img.url === url);
+    
+    fullscreen.innerHTML = `
+        <div class="fullscreen-content">
+            <span class="close-fullscreen">&times;</span>
+            <button class="gallery-nav gallery-prev">&lt;</button>
+            <img src="${url}" alt="${title}">
+            <button class="gallery-nav gallery-next">&gt;</button>
+            <div class="fullscreen-caption">
+                <h3>${title}</h3>
+                <p>${description}</p>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(fullscreen);
+    
+    fullscreen.querySelector('.gallery-prev').onclick = () => {
+        const prevIndex = (currentIndex - 1 + images.length) % images.length;
+        const prevImage = images[prevIndex];
+        openFullscreenImage(prevImage.url, prevImage.title, prevImage.description);
+        document.body.removeChild(fullscreen);
+    };
+    
+    fullscreen.querySelector('.gallery-next').onclick = () => {
+        const nextIndex = (currentIndex + 1) % images.length;
+        const nextImage = images[nextIndex];
+        openFullscreenImage(nextImage.url, nextImage.title, nextImage.description);
+        document.body.removeChild(fullscreen);
+    };
+    
+    fullscreen.querySelector('.close-fullscreen').onclick = () => {
+        document.body.removeChild(fullscreen);
+    };
+    
+    // Fechar ao clicar fora da imagem
+    fullscreen.onclick = (e) => {
+        if (e.target === fullscreen) {
+            document.body.removeChild(fullscreen);
+        }
+    };
+}
+
+// Chamar a função quando o documento estiver carregado
+document.addEventListener('DOMContentLoaded', () => {
+    renderGalleries();
+}); 

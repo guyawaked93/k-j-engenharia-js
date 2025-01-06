@@ -305,6 +305,17 @@ const projectsData = {
             "https://static.wixstatic.com/media/f064ac_29ecf5ba110e49d38ff3b064b7dd697e~mv2.png",
             "https://static.wixstatic.com/media/f064ac_c750943b90414378b806b1729dad044b~mv2.png"
         ]
+    },
+    "passarela": {
+        title: "PASSARELA METÁLICA RODOVIÁRIA",
+        date: "2024",
+        description: "Dimensionamento, memorial de cálculo e ART de passarela metálica rodoviária.",
+        image: "images/projetos/04e195c1-ebb9-44ac-a7ae-87849bee51d3.jpg",
+        gallery: [
+            "images/projetos/9ed2336a-b747-4dce-a835-7a9d88b44d6e.jpg",
+            "images/projetos/f50a131f-60e5-47e0-a7b6-477e1dcd5f57.jpg",
+            "images/projetos/04e195c1-ebb9-44ac-a7ae-87849bee51d3.jpg"
+        ]
     }
 };
 

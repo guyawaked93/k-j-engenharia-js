@@ -109,7 +109,7 @@ const serviceDetails = {
         benefits: [
             "Rapidez na Execução: A construção com aço é até 50% mais rápida que métodos tradicionais, reduzindo o tempo de obra e minimizando transtornos.",
             "Segurança Reforçada: O aço é um material extremamente resistente e durável, proporcionando maior segurança à sua obra, mesmo em áreas de risco sísmico.",
-            "Precisão e Versatilidade: Projetos sob medida garantem estruturas precisas e com infinitas possibilidades arquitetônicas, atendendo às suas necessidades e estilo desejado.",
+            "Precisão e Versatilidade: Projetos sob medida garantem estruturas precisas e com infinitas possibilidades arquitetonico, atendendo às suas necessidades e estilo desejado.",
             "Leveza e Economia: Estruturas metálicas são mais leves que concreto ou alvenaria, reduzindo a carga nas fundações e otimizando o uso de materiais, gerando economia na obra.",
             "Sustentabilidade: O aço é um material reciclável, diminuindo o impacto ambiental da construção e promovendo práticas sustentáveis.",
             "Menos Desperdício: A precisão dos projetos minimiza o desperdício de materiais e otimiza o uso de recursos, economizando dinheiro e contribuindo para o meio ambiente.",
@@ -270,7 +270,8 @@ const projectsData = {
         title: "PROJETO, EXECUÇÃO E GESTÃO DE RESIDÊNCIAS DE ALTO PADRÃO",
         date: "2023",
         description: "Especialização em projetos residenciais de alto padrão, com foco em execução e gestão completa do processo construtivo.",
-        images: [
+        image: "https://static.wixstatic.com/media/f064ac_44d3c7bd67f448c89964cdd8e3200cc8~mv2.jpeg",
+        gallery: [
             "https://static.wixstatic.com/media/f064ac_44d3c7bd67f448c89964cdd8e3200cc8~mv2.jpeg",
             "https://static.wixstatic.com/media/f064ac_947259f333a746788ee7e08e4722a32a~mv2.jpeg",
             "https://static.wixstatic.com/media/f064ac_852671dd012c4d0bbe0546bd1cd3a938~mv2.jpeg",
@@ -281,7 +282,8 @@ const projectsData = {
         title: "PROJETO, LAUDO E ART DE LINHA DE VIDA - EDP SÃO JOSÉ DOS CAMPOS",
         date: "2024",
         description: "Adequação de linha de vida existente.\nTeste de arrancamento.",
-        images: [
+        image: "https://static.wixstatic.com/media/f064ac_d70cd3c179e24f878f14163fe91b2e12~mv2.jpg",
+        gallery: [
             "https://static.wixstatic.com/media/f064ac_d70cd3c179e24f878f14163fe91b2e12~mv2.jpg",
             "https://static.wixstatic.com/media/f064ac_6f1c181510c0436085ad264ff626ea0a~mv2.jpg",
             "https://static.wixstatic.com/media/f064ac_f6ede795063a4e04a07576976bfe7e17~mv2.png",
@@ -294,7 +296,8 @@ const projectsData = {
         title: "PROJETOS E LAUDOS PARA EMBALAGENS",
         date: "2024",
         description: "Desenvolvimento de projetos e laudos técnicos especializados para embalagens industriais.",
-        images: [
+        image: "https://static.wixstatic.com/media/f064ac_f13d4ea5b8ae42cea45552ac602abca9~mv2.png",
+        gallery: [
             "https://static.wixstatic.com/media/f064ac_f13d4ea5b8ae42cea45552ac602abca9~mv2.png",
             "https://static.wixstatic.com/media/f064ac_f3ed46bdea374576a9dc4cf0b8447b6f~mv2.jpg",
             "https://static.wixstatic.com/media/f064ac_71f0d06647724fe9b2bcf1ed82565fa8~mv2.png",
@@ -327,8 +330,8 @@ document.querySelectorAll('.project-card').forEach(card => {
             <p class="modal-description">${project.description}</p>
         `;
         
-        if (project.images && project.images.length > 0) {
-            const gallery = createGallery(project.images);
+        if (project.gallery && project.gallery.length > 0) {
+            const gallery = createGallery(project.gallery);
             modalInfo.appendChild(gallery);
         }
         
@@ -417,8 +420,8 @@ function openProjectModal(project) {
     `;
     
     // Adicione a galeria se o projeto tiver imagens
-    if (project.images && project.images.length > 0) {
-        const gallery = createGallery(project.images);
+    if (project.gallery && project.gallery.length > 0) {
+        const gallery = createGallery(project.gallery);
         modalInfo.appendChild(gallery);
     }
     

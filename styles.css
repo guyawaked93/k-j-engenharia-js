@@ -37,13 +37,14 @@ nav {
 .logo {
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    max-width: 150px;
+    height: auto;
 }
 
 .logo img {
-    height: 40px;
-    width: auto;
-    max-width: 200px;
+    width: 100%;
+    height: auto;
+    max-height: 35px;
     object-fit: contain;
     transition: transform 0.3s ease;
 }
@@ -53,9 +54,11 @@ nav {
 }
 
 @media (max-width: 768px) {
+    .logo {
+        max-width: 120px;
+    }
     .logo img {
-        height: 35px;
-        max-width: 150px;
+        max-height: 30px;
     }
 }
 

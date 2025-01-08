@@ -327,113 +327,85 @@ nav {
     transform: scale(1.05);
 }
 
-/* Formulário de Contato */
+/* Seção de Contato */
 .contact {
-    padding: 5rem 2rem;
-    background-color: var(--accent-color);
+    padding: 5rem 0;
+    background-color: #f8f8f8;
 }
 
 .contact-container {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    padding: 0 20px;
 }
 
 .contact h2 {
     font-size: 2.5rem;
-    color: var(--text-color);
+    color: #333;
     margin-bottom: 1rem;
 }
 
 .contact-description {
     font-size: 1.1rem;
     color: #666;
-    margin-bottom: 3rem;
-}
-
-.contact-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 .whatsapp-contact-button {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    padding: 1rem 2rem;
+    gap: 10px;
+    padding: 15px 30px;
     background-color: #25D366;
     color: white;
     border: none;
     border-radius: 50px;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
-}
-
-.whatsapp-contact-button i {
-    font-size: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 .whatsapp-contact-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
-    background-color: #22c35e;
+    background-color: #22bb5b;
+    transform: translateY(-2px);
+}
+
+.whatsapp-contact-button i {
+    font-size: 1.4rem;
 }
 
 .contact-info {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem;
     margin-top: 2rem;
 }
 
 .info-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 1.1rem;
+    gap: 8px;
     color: #666;
 }
 
 .info-item i {
     color: var(--primary-color);
-    font-size: 1.3rem;
-}
-
-@media (max-width: 768px) {
-    .contact h2 {
-        font-size: 2rem;
-    }
-
-    .contact-description {
-        font-size: 1rem;
-    }
-
-    .whatsapp-contact-button {
-        font-size: 1.1rem;
-        padding: 0.8rem 1.5rem;
-    }
-
-    .info-item {
-        font-size: 1rem;
-    }
+    font-size: 1.2rem;
 }
 
 /* Footer */
 footer {
     background-color: #333;
-    color: white;
-    padding: 3rem 2rem;
+    padding: 3rem 0;
 }
 
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -445,50 +417,32 @@ footer {
     gap: 1rem;
 }
 
-.footer-info .logo-text {
+.footer-logo {
     display: flex;
     align-items: center;
     gap: 6px;
+    margin-bottom: 1rem;
+}
+
+.footer-kj {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem;
-}
-
-.footer-info .logo-kj {
-    color: var(--primary-color);
+    font-size: 1.8rem;
     font-weight: 700;
+    color: var(--primary-color);
     text-transform: uppercase;
 }
 
-.footer-info .logo-eng {
-    color: white;
+.footer-eng {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
     font-weight: 500;
+    color: white;
     text-transform: uppercase;
-    opacity: 0.9;
 }
 
-.footer-info p {
-    margin: 0.3rem 0;
+.footer-contact p {
     color: #ccc;
-    font-size: 1rem;
-}
-
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 2rem;
-    }
-
-    .footer-info .logo-text {
-        justify-content: center;
-        font-size: 1.2rem;
-    }
-
-    .social-links {
-        justify-content: center;
-    }
+    margin: 0.3rem 0;
 }
 
 .social-links {
@@ -504,6 +458,41 @@ footer {
 
 .social-links a:hover {
     color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .contact h2 {
+        font-size: 2rem;
+    }
+
+    .contact-description {
+        font-size: 1rem;
+    }
+
+    .whatsapp-contact-button {
+        padding: 12px 24px;
+        font-size: 1.1rem;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-kj,
+    .footer-eng {
+        font-size: 1.4rem;
+    }
 }
 
 /* Seção Sobre */

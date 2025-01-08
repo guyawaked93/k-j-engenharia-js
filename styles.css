@@ -37,8 +37,46 @@ nav {
 .logo {
     display: flex;
     align-items: center;
-    max-width: 150px;
-    height: auto;
+    gap: 15px;
+}
+
+.logo img {
+    width: auto;
+    height: 35px;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.logo-kj {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.logo-eng {
+    color: #333;
+    font-weight: 500;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        height: 30px;
+    }
+    
+    .logo-text {
+        font-size: 1.1rem;
+        gap: 4px;
+    }
 }
 
 .logo img {

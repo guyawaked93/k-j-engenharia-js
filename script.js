@@ -1,5 +1,5 @@
-// Smooth scroll para links de navegação
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// Smooth scroll apenas para links do menu de navegação
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({
@@ -27,16 +27,6 @@ class Slider {
     }
 
     init() {
-        // Criar dotsK
-        const dotsContainer = document.querySelector('.slider-dots');
-        this.slides.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => this.goToSlide(index));
-            dotsContainer.appendChild(dot);
-        });
-
         // Adicionar eventos aos botões
         document.querySelector('.prev-slide').addEventListener('click', () => this.prevSlide());
         document.querySelector('.next-slide').addEventListener('click', () => this.nextSlide());
@@ -44,18 +34,18 @@ class Slider {
         // Iniciar slideshow automático
         this.startSlideshow();
 
-        // Pausar slideshow quando o mouse estiver sobre o slider
-        document.querySelector('.slider').addEventListener('mouseenter', () => this.pauseSlideshow());
-        document.querySelector('.slider').addEventListener('mouseleave', () => this.startSlideshow());
+        // Pausar slideshow apenas quando o mouse estiver sobre os botões
+        document.querySelectorAll('.hero-button').forEach(button => {
+            button.addEventListener('mouseenter', () => this.pauseSlideshow());
+            button.addEventListener('mouseleave', () => this.startSlideshow());
+        });
     }
 
     updateSlides() {
-        this.slides.forEach((slide, index) => {
+        this.slides.forEach((slide) => {
             slide.classList.remove('active');
-            document.querySelectorAll('.dot')[index].classList.remove('active');
         });
         this.slides[this.currentSlide].classList.add('active');
-        document.querySelectorAll('.dot')[this.currentSlide].classList.add('active');
     }
 
     nextSlide() {
@@ -68,14 +58,9 @@ class Slider {
         this.updateSlides();
     }
 
-    goToSlide(index) {
-        this.currentSlide = index;
-        this.updateSlides();
-    }
-
     startSlideshow() {
         if (this.slideInterval) return;
-        this.slideInterval = setInterval(() => this.nextSlide(), 5000); // Muda slide a cada 5 segundos
+        this.slideInterval = setInterval(() => this.nextSlide(), 4000); // Muda slide a cada 4 segundos
     }
 
     pauseSlideshow() {
@@ -736,4 +721,11 @@ function openFullscreenImage(url, title, description) {
 // Chamar a função quando o documento estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
     renderGalleries();
+});
+
+// Botão de projetos
+document.querySelector('.projects-button').addEventListener('click', function() {
+    document.querySelector('#projetos').scrollIntoView({
+        behavior: 'smooth'
+    });
 }); 

@@ -330,45 +330,105 @@ nav {
 /* Formulário de Contato */
 .contact {
     padding: 5rem 2rem;
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
 }
 
 .contact-container {
     max-width: 800px;
     margin: 0 auto;
+    text-align: center;
 }
 
-form {
+.contact h2 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.contact-description {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+.contact-content {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    gap: 3rem;
 }
 
-input, textarea {
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-button {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 1rem;
+.whatsapp-contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 2rem;
+    background-color: #25D366;
+    color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
 }
 
-button:hover {
-    background-color: #c41530;
+.whatsapp-contact-button i {
+    font-size: 1.5rem;
+}
+
+.whatsapp-contact-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+    background-color: #22c35e;
+}
+
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.info-item i {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+    .contact h2 {
+        font-size: 2rem;
+    }
+
+    .contact-description {
+        font-size: 1rem;
+    }
+
+    .whatsapp-contact-button {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .info-item {
+        font-size: 1rem;
+    }
 }
 
 /* Footer */
 footer {
-    background-color: var(--text-color);
-    color: var(--secondary-color);
-    padding: 2rem;
+    background-color: #333;
+    color: white;
+    padding: 3rem 2rem;
 }
 
 .footer-content {
@@ -379,11 +439,67 @@ footer {
     align-items: center;
 }
 
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-info .logo-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.footer-info .logo-kj {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.footer-info .logo-eng {
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.footer-info p {
+    margin: 0.3rem 0;
+    color: #ccc;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .footer-info .logo-text {
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
 .social-links a {
-    color: var(--secondary-color);
-    margin-left: 1rem;
+    color: white;
     font-size: 1.5rem;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 .social-links a:hover {
@@ -431,33 +547,29 @@ footer {
 }
 
 .member {
-    flex: 1;
-    min-width: 300px;
-    background: var(--accent-color);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: flex-start;
 }
 
 .member-image {
-    width: 100%;
+    flex: 0 0 250px;
     height: 300px;
+    border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .member-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s;
-}
-
-.member:hover .member-image img {
-    transform: scale(1.05);
+    object-position: center top;
 }
 
 .member-info {
-    padding: 2rem;
+    flex: 1;
 }
 
 .member-info h4 {
@@ -487,7 +599,15 @@ footer {
     }
     
     .member {
-        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .member-image {
+        flex: 0 0 200px;
+        height: 250px;
+        width: 200px;
     }
     
     .about h2 {
